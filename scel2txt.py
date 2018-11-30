@@ -184,10 +184,12 @@ def batch_file():
     for parent, dirnames, filenames in os.walk(input_dir):
         pass
     # 批量处理文件
+    global GTable
     for filename in filenames:
         scel2txt(os.path.join(parent, filename))
         with open(os.path.join(output_dir, filename.replace('.scel', '.txt')), 'w', encoding='utf8') as f:
             f.writelines([word + '\n' for count, py, word in GTable])
+        GTable = []
 
 
 if __name__ == '__main__':
